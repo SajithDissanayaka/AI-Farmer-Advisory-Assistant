@@ -1,0 +1,32 @@
+
+<div class="home-container">
+  <header class="navbar">
+    <h2>🌱 Govi Upadeshaka</h2>
+    <span>AI Farmer Advisory Assistant</span>
+  </header>
+
+  <main class="hero">
+    <h1>ගොවි උපදේශක</h1>
+    <p>
+      ඔබේ වගාවට අවශ්‍ය කෘෂිකාර්මික උපදෙස්
+      දැන් සිංහලෙන්ම ලබාගන්න.
+    </p>
+
+    
+   
+<button
+  (click)="showMessage()"
+  [disabled]="loading()"
+>
+  {{ loading() ? 'Connecting...' : 'Connect to Backend' }}
+</button>
+
+@if (message()) {
+  <p class="message">
+    {{ message() }}
+  </p>
+}
+
+
+  </main>
+</div>
