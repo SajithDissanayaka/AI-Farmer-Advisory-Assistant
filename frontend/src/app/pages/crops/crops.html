@@ -34,22 +34,44 @@
       />
     </div>
 
-    <div class="crop-grid">
+    
+@if (isLoading()) {
 
-      @for (crop of filteredCrops(); track crop.id) {
+  <div class="empty-state" role="status">
+    <h3>🌱 බෝග තොරතුරු ලබාගනිමින්...</h3>
+  </div>
 
-        <app-crop-card [crop]="crop"></app-crop-card>
+} @else if (errorMessage()) {
 
-      } @empty {
+  <div class="empty-state" role="alert">
+    <h3>{{ errorMessage() }}</h3>
 
-        <div class="empty-state">
-          <h3>බෝග හමු නොවීය</h3>
-          <p>වෙනත් නමක් යොදා සොයන්න.</p>
-        </div>
+    <button type="button" (click)="loadCrops()">
+      නැවත උත්සාහ කරන්න
+    </button>
+  </div>
 
-      }
+} @else {
 
-    </div>
+  <div class="crop-grid">
+
+    @for (crop of filteredCrops(); track crop.id) {
+
+      <app-crop-card [crop]="crop"></app-crop-card>
+
+    } @empty {
+
+      <div class="empty-state">
+        <h3>බෝග හමු නොවීය</h3>
+        <p>වෙනත් නමක් යොදා සොයන්න.</p>
+      </div>
+
+    }
+
+  </div>
+
+}
+
 
   </section>
 
