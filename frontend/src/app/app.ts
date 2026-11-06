@@ -1,40 +1,13 @@
 
-import { Component, inject, signal } from '@angular/core';
-import { Api } from './services/api';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Navbar } from './components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet, Navbar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  private api = inject(Api);
-
-  message = signal<string>('');
-  loading = signal<boolean>(false);
-
-  showMessage(): void {
-    console.log('Button clicked');
-
-    this.loading.set(true);
-    this.message.set('');
-
-    this.api.getHealth().subscribe({
-      next: (response) => {
-        console.log('API success:', response);
-
-        this.message.set(response.message);
-        this.loading.set(false);
-      },
-
-      error: (error) => {
-        console.error('API failed:', error);
-
-        this.message.set('Backend connection failed');
-        this.loading.set(false);
-      }
-    });
-  }
-}
+export class App {}

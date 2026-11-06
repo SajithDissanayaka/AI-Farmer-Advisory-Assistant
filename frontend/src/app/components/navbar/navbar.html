@@ -1,1 +1,25 @@
-<p>navbar works!</p>
+
+<nav class="navbar">
+  <a routerLink="/" class="logo">
+    🌱 Govi Upadeshaka
+  </a>
+
+  <div class="nav-links">
+    <a routerLink="/" routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
+      Home
+    </a>
+
+    <a routerLink="/chat" routerLinkActive="active">
+      AI Chat
+    </a>
+
+    <a routerLink="/crops" routerLinkActive="active">
+      Crops
+    </a>
+
+    <a routerLink="/weather" routerLinkActive="active">
+      Weather
+    </a>
+  </div>
+</nav>
