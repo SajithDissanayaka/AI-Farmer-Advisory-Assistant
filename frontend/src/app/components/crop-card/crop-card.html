@@ -1,0 +1,26 @@
+
+<article class="crop-card">
+
+  <div class="crop-image">
+    <span>{{ crop().emoji }}</span>
+  </div>
+
+  <div class="crop-content">
+
+    <h3>{{ crop().nameSi }} වගාව</h3>
+
+    <span class="english-name">
+      {{ crop().nameEn }}
+    </span>
+
+    <p>{{ crop().description }}</p>
+
+    <a
+      [routerLink]="['/crops', crop().id]"
+      class="view-link">
+      මාර්ගෝපදේශය බලන්න →
+    </a>
+
+  </div>
+
+</article>

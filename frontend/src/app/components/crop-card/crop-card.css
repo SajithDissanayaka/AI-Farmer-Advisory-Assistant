@@ -1,0 +1,59 @@
+
+.crop-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.crop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.crop-image {
+  height: 160px;
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crop-image span {
+  font-size: 72px;
+}
+
+.crop-content {
+  padding: 22px;
+}
+
+.crop-content h3 {
+  margin: 0 0 6px;
+  color: #14532d;
+  font-size: 21px;
+}
+
+.english-name {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.crop-content p {
+  color: #475569;
+  line-height: 1.7;
+  font-size: 14px;
+  margin: 15px 0;
+}
+
+.view-link {
+  color: #15803d;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}

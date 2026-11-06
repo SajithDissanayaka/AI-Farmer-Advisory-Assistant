@@ -3,7 +3,8 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Chat } from './pages/chat/chat';
 import { Crops } from './pages/crops/crops';
-import { Weather } from './pages/weather/weather';
+import { WeatherPage } from './pages/weather/weather';
+import { CropDetail } from './pages/crop-detail/crop-detail';
 
 
 export const routes: Routes = [
@@ -20,8 +21,12 @@ export const routes: Routes = [
         component : Crops
     },
     {
+        path : 'crops/:id',
+        component : CropDetail
+    },
+    {
         path : 'weather',
-        component : Weather
+        component : WeatherPage
     },
     {
         path : '**',

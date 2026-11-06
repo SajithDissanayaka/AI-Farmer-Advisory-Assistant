@@ -1,5 +1,56 @@
 
-<section class="placeholder-page">
-  <h1>🌾 බෝග මාර්ගෝපදේශ</h1>
-  <p>වී, මිරිස් සහ තක්කාලි වගා තොරතුරු.</p>
-</section>
+<div class="crops-page">
+
+  <section class="crops-hero">
+    <span class="eyebrow">
+      🌱 Crop Knowledge Center
+    </span>
+
+    <h1>බෝග මාර්ගෝපදේශ</h1>
+
+    <p>
+      ඔබේ වගාවට අදාළ තොරතුරු සහ
+      මාර්ගෝපදේශ සොයාගන්න.
+    </p>
+  </section>
+
+  <section class="crops-section">
+
+    <div class="section-heading">
+      <h2>බෝග තෝරන්න</h2>
+
+      <span>
+        {{ filteredCrops().length }} බෝග
+      </span>
+    </div>
+
+    <div class="search-container">
+      <input
+        type="search"
+        placeholder="බෝග නම සොයන්න..."
+        aria-label="බෝග නම සොයන්න"
+        [value]="searchTerm()"
+        (input)="updateSearch($any($event.target).value)"
+      />
+    </div>
+
+    <div class="crop-grid">
+
+      @for (crop of filteredCrops(); track crop.id) {
+
+        <app-crop-card [crop]="crop"></app-crop-card>
+
+      } @empty {
+
+        <div class="empty-state">
+          <h3>බෝග හමු නොවීය</h3>
+          <p>වෙනත් නමක් යොදා සොයන්න.</p>
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+</div>

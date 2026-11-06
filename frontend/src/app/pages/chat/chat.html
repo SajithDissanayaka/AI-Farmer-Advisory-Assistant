@@ -1,4 +1,99 @@
-<section class="placeholder-page">
-  <h1>💬 AI ගොවි උපදේශක</h1>
-  <p>AI Chatbot එක මෙතැනට එකතු කරනවා.</p>
-</section>
+
+<div class="chat-page">
+
+  <section class="chat-container">
+
+    <!-- Chat Header -->
+    <header class="chat-header">
+
+      <div class="assistant-info">
+        <div class="assistant-avatar">🌱</div>
+
+        <div>
+          <h2>ගොවි උපදේශක AI</h2>
+          <p>ඔබේ කෘෂිකාර්මික සහායකයා</p>
+        </div>
+      </div>
+
+      <button
+        class="clear-btn"
+        (click)="clearChat()"
+        type="button">
+        Clear
+      </button>
+
+    </header>
+
+    <!-- Chat Messages -->
+    <main class="chat-messages">
+
+      @for (message of messages(); track message.id) {
+
+        <div
+          class="message-row"
+          [class.user-row]="message.role === 'user'">
+
+          <div
+            class="message-bubble"
+            [class.user-bubble]="message.role === 'user'"
+            [class.ai-bubble]="message.role === 'assistant'">
+
+            <p>{{ message.text }}</p>
+
+            <span class="message-time">
+              {{ message.time }}
+            </span>
+
+          </div>
+
+        </div>
+
+      } @empty {
+
+        <div class="empty-chat">
+          <h3>🌾 ආයුබෝවන්!</h3>
+          <p>ඔබේ පළමු ප්‍රශ්නය අහන්න.</p>
+        </div>
+
+      }
+
+      @if (isLoading()) {
+        <div class="loading-message">
+          පිළිතුර සකස් කරමින්...
+        </div>
+      }
+
+    </main>
+
+    <!-- Chat Input -->
+    <footer class="chat-footer">
+
+      <form
+        class="chat-form"
+        (submit)="$event.preventDefault(); sendMessage()">
+
+        <input
+          type="text"
+          placeholder="ඔබේ ප්‍රශ්නය මෙහි ලියන්න..."
+          aria-label="ඔබේ ප්‍රශ්නය"
+          [value]="userInput()"
+          (input)="userInput.set($any($event.target).value)"
+        />
+
+        <button
+          type="submit"
+          [disabled]="!userInput().trim() || isLoading()">
+          යවන්න ➤
+        </button>
+
+      </form>
+
+      <p class="chat-notice">
+        Demo mode — තවම සැබෑ කෘෂිකාර්මික උපදෙස් ලබා නොදේ.
+      </p>
+
+    </footer>
+
+  </section>
+
+</div>

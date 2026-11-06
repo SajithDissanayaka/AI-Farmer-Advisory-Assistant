@@ -1,4 +1,154 @@
-<section class="placeholder-page">
-  <h1>🌤️ කාලගුණ තොරතුරු</h1>
-  <p>ඔබේ ප්‍රදේශයේ කාලගුණ අනාවැකි.</p>
-</section>
+
+<div class="weather-page">
+
+  <section class="weather-hero">
+
+    <span class="eyebrow">
+      🌤️ Weather Information Center
+    </span>
+
+    <h1>කාලගුණ තොරතුරු</h1>
+
+    <p>
+      ඔබේ දිස්ත්‍රික්කයේ කාලගුණ තොරතුරු
+      පහසුවෙන් ලබාගන්න.
+    </p>
+
+    <div class="district-selector">
+
+      <label for="district">
+        දිස්ත්‍රික්කය තෝරන්න
+      </label>
+
+      <select
+        id="district"
+        [value]="selectedDistrict()"
+        (change)="onDistrictChange(
+          $any($event.target).value
+        )"
+      >
+
+        @for (district of districts; track district.id) {
+
+          <option [value]="district.id">
+            {{ district.name }}
+          </option>
+
+        }
+
+      </select>
+
+    </div>
+
+  </section>
+
+  <section class="weather-content">
+
+    <div class="demo-notice">
+      ⚠️ මෙය Demo Weather Data පමණි.
+      සැබෑ කාලගුණ අනාවැකි නොවේ.
+    </div>
+
+    @if (isLoading()) {
+
+      <div class="status-box" role="status">
+        <div class="spinner"></div>
+        <p>කාලගුණ තොරතුරු ලබාගනිමින්...</p>
+      </div>
+
+    } @else if (errorMessage()) {
+
+      <div class="status-box error-box" role="alert">
+        <h3>දෝෂයක් ඇති වුණා</h3>
+        <p>{{ errorMessage() }}</p>
+
+        <button (click)="loadWeather()">
+          නැවත උත්සාහ කරන්න
+        </button>
+      </div>
+
+    } @else if (weatherData(); as weather) {
+
+      <div class="current-weather">
+
+        <div class="weather-icon">
+          {{ weather.icon }}
+        </div>
+
+        <div>
+          <h2>{{ weather.districtName }}</h2>
+
+          <div class="temperature">
+            {{ weather.temperature }}°C
+          </div>
+
+          <p>{{ weather.condition }}</p>
+        </div>
+
+      </div>
+
+      <h2 class="section-title">
+        කාලගුණ විස්තර
+      </h2>
+
+      <div class="weather-grid">
+
+        <div class="weather-card">
+          <span>💧 ආර්ද්‍රතාව</span>
+          <strong>{{ weather.humidity }}%</strong>
+        </div>
+
+        <div class="weather-card">
+          <span>🌧️ වර්ෂාපතනය</span>
+          <strong>{{ weather.rainfall }} mm</strong>
+        </div>
+
+        <div class="weather-card">
+          <span>💨 සුළං වේගය</span>
+          <strong>{{ weather.windSpeed }} km/h</strong>
+        </div>
+
+        <div class="weather-card">
+          <span>🌡️ උෂ්ණත්වය</span>
+          <strong>{{ weather.temperature }}°C</strong>
+        </div>
+
+      </div>
+
+      <h2 class="section-title">
+        දින 3ක Demo Forecast
+      </h2>
+
+      <div class="forecast-grid">
+
+        @for (day of weather.forecast; track day.day) {
+
+          <div class="forecast-card">
+
+            <h3>{{ day.day }}</h3>
+
+            <div class="forecast-icon">
+              {{ day.icon }}
+            </div>
+
+            <p>{{ day.condition }}</p>
+
+            <strong>
+              {{ day.maxTemp }}°C
+            </strong>
+
+            <span>
+              අවම {{ day.minTemp }}°C
+            </span>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  </section>
+
+</div>
